@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OthelloModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="partidas">
+    <Key>
+      <PropertyRef Name="idPartida" />
+    </Key>
+    <Property Name="idPartida" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+    <Property Name="tipoPartia" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="movRealizados" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="estadoPartida" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="nombreUsuario" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="torneos">
+    <Key>
+      <PropertyRef Name="idTorneo" />
+      <PropertyRef Name="nombre_Usuario" />
+    </Key>
+    <Property Name="idTorneo" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+    <Property Name="nombre_Usuario" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="nombreTorneo" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="noJugadores" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="nombre_usuario" />
+    </Key>
+    <Property Name="nombre_usuario" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="apellidos_usuario" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="contraseña" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="fecha_nacimiento" Type="date" Nullable="false" />
+    <Property Name="pais" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="correo_electronico" Type="nvarchar" MaxLength="38" Nullable="false" />
+    <Property Name="nombres_usuarios" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_nombreusuario">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+    <End Role="partidas" Type="Self.partidas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="nombre_usuario" />
+      </Principal>
+      <Dependent Role="partidas">
+        <PropertyRef Name="nombreUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OthelloModel1StoreContainer">
+    <EntitySet Name="partidas" EntityType="Self.partidas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="torneos" EntityType="Self.torneos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_nombreusuario" Association="Self.fk_nombreusuario">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="partidas" EntitySet="partidas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "finPartida";
+}
+
+<h2>FINAL PARTIDA</h2>
+
+<form>
+    <div>
+        <h3 style="color:palevioletred">LOS RESULTADOS DE LA PARTIDA SON</h3>
+        @if (string.IsNullOrEmpty(ViewBag.empato))
+        {
+            <h5 style="color:orangered">Jugador#1 @ViewBag.Usuario1 </h5>
+            <h5 style="color:orangered">Jugador#2 @ViewBag.Usuario2</h5>
+            <h5 style="color:black">_______________________________________</h5>
+            <h3 style="color:blue">@ViewBag.gano</h3>
+            <h3 style="color:blue">@ViewBag.perdio</h3>
+
+
+        }
+        else
+        {
+            <h5 style="color:orangered">Jugador#1 @ViewBag.Usuario1 </h5>
+            <h5 style="color:orangered">Jugador#2 @ViewBag.Usuario2</h5>
+            <h5 style="color:black">_______________________________________</h5>
+            <h3 style="color:blue">@ViewBag.empato</h3>
+            <h3 style="color:blue">EL NUMERO DE FICHAS FUE: @ViewBag.cualquieraF</h3>
+
+        }
+
+    </div>
+</form>
+<div>
+    <table width="400" border="1" cellpadding="0" cellspacing="0">
+
+
+
+        @{Tablero ta = ViewBag.tablero;
+            int i = 0;
+            string[,] a = ta.getMatriz(); }
+        @{for (int f = 0; f < a.GetLength(0); f++)
+            {
+
+                <tr>
+                    @for (int c = 0; c < a.GetLength(1); c++)
+                    {
+                        if (a[f, c] == "blanco")
+                        {
+                            <td height="50" width="50"><img src="@Url.Content("~/Images/blanca.jpg")" width="100%"></td>
+                        }
+                        else if (a[f, c] == "negro")
+                        {
+                            <td height="50" width="50"><img src="@Url.Content("~/Images/fichaNegra.jpg")" width="100%"></td>
+                        }
+                        else if (a[f, c] == "nada")
+                        {
+                            <td style="background-color:#6ADC1B;" height="50" width="50"></td>
+                        }
+
+                        else
+                        {
+                            <td style="background-color:#B97D19;" height="50" width="50"> @a[f, c] </td>
+                        }
+                    }
+                </tr>
+            }
+        }
+    </table>
+    <form action="/proyecOthello/ultimasOpc" method="post">
+        <input type="submit" name="btn1" value="IR A INICIO" />
+        <input type="submit" name="btn1" value="SALIR" />
+   </form>
+</div>

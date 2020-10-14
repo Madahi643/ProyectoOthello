@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "vista1";
+}
+
+<h2>LOGIN</h2>
+
+<form action="/proyecOthello/vista1" method="post">
+
+    <div>
+        <input type="text" class="form control" name="nombreUsuario" placeholder="Introduzca el Usuario" />
+        <input type="text" class="form control" name="contraseña" placeholder="Introduzca su contraseña" />
+    </div>
+        <input type="submit" name="btn1" value="ingresar" />
+        <input type="submit" name="btn1" value="registrar" />
+        <div>
+            <h3 style="color:blue">@ViewBag.NombreUsuario</h3>
+            <h3 style="color:blue">@ViewBag.direc</h3>
+        </div>
+</form>

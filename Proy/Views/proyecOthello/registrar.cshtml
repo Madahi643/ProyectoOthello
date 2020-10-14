@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "registar";
+}
+
+<h2>REGISTRO USUARIO</h2>
+
+<form action="/proyecOthello/registro" method="post">
+    <div>
+        <h3 style="color:blue">@ViewBag.proceso</h3>
+    </div>
+    <div>
+        <h3 style="color:teal">Para registrarse llene los siguientes campos</h3>
+    </div>
+    <div>
+        <h5 style="color:black">Nombre de Usuario</h5>
+    </div>
+    <div>
+        <input type="text" class="form control" name="nombreUsuario" placeholder="Nombre Usuario" />
+    </div>
+    <div>
+        <h5 style="color:black">Contraseña</h5>
+    </div>
+    <div>
+        <input type="text" class="form control" name="contraseña" placeholder="Contraseña" />
+    </div>
+
+    <div>
+        <h5 style="color:black">Nombres del jugador</h5>
+    </div>
+    <div>
+        <input type="text" class="form control" name="nombreJugador" placeholder="Nombre Usuario" />
+    </div>
+    <div>
+        <h5 style="color:black">Apellidos del jugador</h5>
+    </div>
+    <div>
+        <input type="text" class="form control" name="apellidoJugador" placeholder="Nombre Usuario" />
+    </div>
+    <div>
+        <h5 style="color:black">Fecha nacimiento</h5>
+    </div>
+    <div>
+        <input type="text" class="form control" name="dia" placeholder="Dia" />
+        <input type="text" class="form control" name="mes" placeholder="Mes" />
+        <input type="text" class="form control" name="año" placeholder="Año" />
+    </div>
+    <div>
+        <h5 style="color:black">Pais</h5>
+    </div>
+    <div>
+        <input type="text" class="form control" name="pais" placeholder="Nombre Usuario" />
+    </div>
+    <div>
+        <h5 style="color:black">Correo Electronico</h5>
+    </div>
+    <div>
+        <input type="text" class="form control" name="correo" placeholder="Nombre Usuario" />
+    </div>
+    <input type="submit" name="btn1" value="registrar" />
+
+</form>

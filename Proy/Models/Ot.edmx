@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OthelloModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="partidas">
+          <Key>
+            <PropertyRef Name="idPartida" />
+          </Key>
+          <Property Name="idPartida" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="tipoPartia" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="movRealizados" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+          <Property Name="estadoPartida" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="nombreUsuario" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="torneos">
+          <Key>
+            <PropertyRef Name="idTorneo" />
+            <PropertyRef Name="nombre_Usuario" />
+          </Key>
+          <Property Name="idTorneo" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="nombre_Usuario" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="nombreTorneo" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="noJugadores" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="nombre_usuario" />
+          </Key>
+          <Property Name="nombre_usuario" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="apellidos_usuario" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="contraseña" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="date" Nullable="false" />
+          <Property Name="pais" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="correo_electronico" Type="nvarchar" MaxLength="38" Nullable="false" />
+          <Property Name="nombres_usuarios" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_nombreusuario">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+          <End Role="partidas" Type="Self.partidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="nombre_usuario" />
+            </Principal>
+            <Dependent Role="partidas">
+              <PropertyRef Name="nombreUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OthelloModel1StoreContainer">
+          <EntitySet Name="partidas" EntityType="Self.partidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="torneos" EntityType="Self.torneos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_nombreusuario" Association="Self.fk_nombreusuario">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="partidas" EntitySet="partidas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OthelloModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="partidas">
+          <Key>
+            <PropertyRef Name="idPartida" />
+          </Key>
+          <Property Name="idPartida" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="tipoPartia" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="movRealizados" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+          <Property Name="estadoPartida" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombreUsuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="usuarios" Relationship="Self.fk_nombreusuario" FromRole="partidas" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="torneos">
+          <Key>
+            <PropertyRef Name="idTorneo" />
+            <PropertyRef Name="nombre_Usuario" />
+          </Key>
+          <Property Name="idTorneo" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="nombre_Usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombreTorneo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="noJugadores" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="nombre_usuario" />
+          </Key>
+          <Property Name="nombre_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellidos_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="pais" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="correo_electronico" Type="String" MaxLength="38" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombres_usuarios" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="partidas" Relationship="Self.fk_nombreusuario" FromRole="usuarios" ToRole="partidas" />
+        </EntityType>
+        <Association Name="fk_nombreusuario">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+          <End Role="partidas" Type="Self.partidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="nombre_usuario" />
+            </Principal>
+            <Dependent Role="partidas">
+              <PropertyRef Name="nombreUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BaseDatos" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="partidas" EntityType="Self.partidas" />
+          <EntitySet Name="torneos" EntityType="Self.torneos" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+          <AssociationSet Name="fk_nombreusuario" Association="Self.fk_nombreusuario">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="partidas" EntitySet="partidas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OthelloModel1StoreContainer" CdmEntityContainer="BaseDatos">
+          <EntitySetMapping Name="partidas">
+            <EntityTypeMapping TypeName="OthelloModel1.partidas">
+              <MappingFragment StoreEntitySet="partidas">
+                <ScalarProperty Name="idPartida" ColumnName="idPartida" />
+                <ScalarProperty Name="tipoPartia" ColumnName="tipoPartia" />
+                <ScalarProperty Name="movRealizados" ColumnName="movRealizados" />
+                <ScalarProperty Name="estadoPartida" ColumnName="estadoPartida" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="torneos">
+            <EntityTypeMapping TypeName="OthelloModel1.torneos">
+              <MappingFragment StoreEntitySet="torneos">
+                <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
+                <ScalarProperty Name="nombre_Usuario" ColumnName="nombre_Usuario" />
+                <ScalarProperty Name="nombreTorneo" ColumnName="nombreTorneo" />
+                <ScalarProperty Name="noJugadores" ColumnName="noJugadores" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="OthelloModel1.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="apellidos_usuario" ColumnName="apellidos_usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="nombres_usuarios" ColumnName="nombres_usuarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

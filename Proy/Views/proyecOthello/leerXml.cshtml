@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "leerXml";
+}
+
+
+<h2>OPCIONES DE TABLERO</h2>
+<form action="/proyecOthello/leerXml" method="post">
+    <head>
+        <title>PORFAVOR INTRODUZCA EL XML PARA LA LECTURA DE LAS FICHAS</title>
+    </head>
+    <body style="background-color:#FFD141;">
+        <input type="text" class="form control" name="nombreArchivo" placeholder="Introduzca el nombre del archivo xml" />
+        <input type="submit" name="btn1" value="OK" />
+        <input type="submit" name="btn1" value="EMPEZAR PARTIDA SIN XML" />
+        <input type="submit" name="btn1" value="SALIR" />
+    </body>
+    <div>
+        <h3 style="color:blue">@ViewBag.Error</h3>
+    </div>
+</form>
+

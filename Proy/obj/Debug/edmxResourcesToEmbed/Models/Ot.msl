@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OthelloModel1StoreContainer" CdmEntityContainer="BaseDatos">
+    <EntitySetMapping Name="partidas">
+      <EntityTypeMapping TypeName="OthelloModel1.partidas">
+        <MappingFragment StoreEntitySet="partidas">
+          <ScalarProperty Name="idPartida" ColumnName="idPartida" />
+          <ScalarProperty Name="tipoPartia" ColumnName="tipoPartia" />
+          <ScalarProperty Name="movRealizados" ColumnName="movRealizados" />
+          <ScalarProperty Name="estadoPartida" ColumnName="estadoPartida" />
+          <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="torneos">
+      <EntityTypeMapping TypeName="OthelloModel1.torneos">
+        <MappingFragment StoreEntitySet="torneos">
+          <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
+          <ScalarProperty Name="nombre_Usuario" ColumnName="nombre_Usuario" />
+          <ScalarProperty Name="nombreTorneo" ColumnName="nombreTorneo" />
+          <ScalarProperty Name="noJugadores" ColumnName="noJugadores" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="OthelloModel1.usuarios">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+          <ScalarProperty Name="apellidos_usuario" ColumnName="apellidos_usuario" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="pais" ColumnName="pais" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="nombres_usuarios" ColumnName="nombres_usuarios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

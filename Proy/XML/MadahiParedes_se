@@ -1,0 +1,22 @@
+<tablero>
+  <ficha>
+    <color>blanco</color>
+    <columna>D</columna>
+    <fila>4</fila>
+  </ficha>
+  <ficha>
+    <color>negro</color>
+    <columna>E</columna>
+    <fila>4</fila>
+  </ficha>
+  <ficha>
+    <color>negro</color>
+    <columna>D</columna>
+    <fila>5</fila>
+  </ficha>
+  <ficha>
+    <color>blanco</color>
+    <columna>E</columna>
+    <fila>5</fila>
+  </ficha>
+</tablero>

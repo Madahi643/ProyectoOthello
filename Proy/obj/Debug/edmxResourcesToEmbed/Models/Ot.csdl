@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OthelloModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="partidas">
+    <Key>
+      <PropertyRef Name="idPartida" />
+    </Key>
+    <Property Name="idPartida" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+    <Property Name="tipoPartia" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="movRealizados" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="estadoPartida" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nombreUsuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="usuarios" Relationship="Self.fk_nombreusuario" FromRole="partidas" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="torneos">
+    <Key>
+      <PropertyRef Name="idTorneo" />
+      <PropertyRef Name="nombre_Usuario" />
+    </Key>
+    <Property Name="idTorneo" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+    <Property Name="nombre_Usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nombreTorneo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="noJugadores" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="nombre_usuario" />
+    </Key>
+    <Property Name="nombre_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="apellidos_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contraseña" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="pais" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="correo_electronico" Type="String" MaxLength="38" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nombres_usuarios" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="partidas" Relationship="Self.fk_nombreusuario" FromRole="usuarios" ToRole="partidas" />
+  </EntityType>
+  <Association Name="fk_nombreusuario">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+    <End Role="partidas" Type="Self.partidas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="nombre_usuario" />
+      </Principal>
+      <Dependent Role="partidas">
+        <PropertyRef Name="nombreUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BaseDatos" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="partidas" EntityType="Self.partidas" />
+    <EntitySet Name="torneos" EntityType="Self.torneos" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+    <AssociationSet Name="fk_nombreusuario" Association="Self.fk_nombreusuario">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="partidas" EntitySet="partidas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

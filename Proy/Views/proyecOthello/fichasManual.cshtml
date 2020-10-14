@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "fichasManual";
+}
+
+<h2>SELECCIONAR COLOR FICHA</h2>
+<form action="/proyecOthello/fichasManualResp" method="post">
+    <head>
+        <title>SELECCIONE SU TIPO DE PARTIDA</title>
+    </head>
+    <body style="background-color:#FFD141;">
+        <label for="Name"> Seleccione EL COLOR DE LA FICHA PARA EL JUGADOR#1 @ViewBag.NomJug1</label>
+        <input type="submit" name="btn1" value="FICHA BLANCA" />
+        <input type="submit" name="btn1" value="FICHA NEGRA" />
+    </body>
+</form>
